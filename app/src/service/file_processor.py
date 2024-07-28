@@ -48,11 +48,12 @@ async def cleanup(file_name):
 
 
 
-async def process_file(source_file_name):
+async def process_file(source_file_name: str):
     file_to_download = f"{BASE_PATH}/{source_file_name}"
     await download_file(file_to_download, f"/{DEST_PATH}/{source_file_name}")
     downloaded_file = f"{DEST_PATH}/{source_file_name}"
-    extracted_folder = f"{DEST_PATH}/{source_file_name.split(".")[0]}"
+    folder_name = source_file_name.split(".")[0]
+    extracted_folder = f"{DEST_PATH}/{folder_name}"
     await unzip_with_native(downloaded_file, extracted_folder)
     await apply_karaoke(extracted_folder)
     #await cleanup(source_file_name.split(".")[0])

@@ -9,4 +9,11 @@ RUN apt-get update && apt-get install -y ffmpeg libsndfile1
 RUN pip install musdb museval
 RUN pip install spleeter==${SPLEETER_VERSION}
 
-ENTRYPOINT ["spleeter"]
+COPY app /app
+WORKDIR /app
+
+RUN pip install poetry
+RUN poetry install
+
+ENTRYPOINT ["poetry"]
+CMD ["run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080", "--app-dir", "src"]
