@@ -112,3 +112,5 @@ docs/build
 .vscode
 spleeter-feedstock/
 *FAKE_MUSDB_DIR
+
+.local
