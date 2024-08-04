@@ -15,3 +15,4 @@ google-cloud-pubsub = "^2.7.0"
 # google sdk for storage
 google-cloud-storage = "^1.42.0"
 fastapi = "^0.111.0"
+firebase-admin = "^6.5.0"

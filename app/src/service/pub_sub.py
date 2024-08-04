@@ -45,6 +45,7 @@ def callback(message):
         # print stack trace
         print(e.with_traceback())
         print(f"Error processing message: {e}")
+        exit(1)
     message.ack()
 
 # Background task to listen for Pub/Sub messages
