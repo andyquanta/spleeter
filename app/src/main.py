@@ -1,35 +1,45 @@
 # Initialize the fastapi app
 import signal
 
-from fastapi import FastAPI
+import logging
+
+from fastapi import FastAPI, BackgroundTasks
+from fastapi import Path, Header
 import concurrent.futures
 from contextlib import asynccontextmanager
-from service.pub_sub import start_pubsub_listener
-from service.pub_sub import stop_event
+from service import file_processor
+from service import publish_notification
+import asyncio
+#from service.pub_sub import start_pubsub_listener
+#from service.pub_sub import stop_event
+
+logging.basicConfig(level=logging.INFO)
 
 
-def signal_handler(sig, frame):
-    print("Signal received, shutting down...")
-    stop_event.set()
+app = FastAPI(docs_url="/karaoke/docs", redoc_url=None, openapi_url="/karaoke/openapi.json")
 
-
-# Initialize a background task to listen to pubsub messages
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    # Start the Pub/Sub listener in the background
-    with concurrent.futures.ThreadPoolExecutor() as pool:
-        pool.submit(start_pubsub_listener)
-        yield
-        stop_event.wait()
-        yield
-        
-
-
-app = FastAPI(lifespan=lifespan)
-
-@app.get("/health")
+@app.get("/karaoke/health")
 async def health():
     return {"status": "ok"}
 
-signal.signal(signal.SIGINT, signal_handler)
-signal.signal(signal.SIGTERM, signal_handler)
+
+@app.post("/karaoke/file/{file_id}/process")
+async def process_karaoke(file_id: str = Path(title="File ID", description="Unique file ID"),
+                          jwt_token: str = Header(default=None, title="JWT Token", description="JWT Token"),
+                          device_token: str = Header(default=None, title="Device Token", description="Device Token"),
+                          background_tasks: BackgroundTasks = None
+                          ):
+    logging.info(f"Processing file {file_id} with JWT token {jwt_token} and device token {device_token}")
+    background_tasks.add_task(file_processor.process_file, file_id, jwt_token, device_token)
+
+    return {"status": "processing", "file_id": file_id}
+
+@app.post("/karaoke/file/message")
+async def send_message(device_token: str = Header(default=None, title="Device Token", description="Device Token"),
+                       message_title: str = Header(default=None, title="Message Title", description="Message Title"),
+                       message_body: str = Header(default=None, title="Message Body", description="Message Body"),
+                       ):
+    
+    await publish_notification.send_notification(device_token, message_title, message_body)
+
+    return {"status": "sending", "device_token": device_token}

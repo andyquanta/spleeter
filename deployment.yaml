@@ -1,0 +1,120 @@
+#create a secret
+apiVersion: v1
+kind: Secret
+metadata:
+  name: spleeter-secret
+  namespace: dev
+type: Opaque
+data:
+  storage.json: ewogICJ0eXBlIjogInNlcnZpY2VfYWNjb3VudCIsCiAgInByb2plY3RfaWQiOiAiYXVkaXRpb24tdG9vbGtpdCIsCiAgInByaXZhdGVfa2V5X2lkIjogIjIxNGQ2ZjM5ZmI2M2VhNDMzMmJhYmZjZGE5MWVjOTA2NTQzMGZhYWEiLAogICJwcml2YXRlX2tleSI6ICItLS0tLUJFR0lOIFBSSVZBVEUgS0VZLS0tLS1cbk1JSUV2Z0lCQURBTkJna3Foa2lHOXcwQkFRRUZBQVNDQktnd2dnU2tBZ0VBQW9JQkFRREp0bXVOMEhhZmVqZXZcbndiQXBFTGNKYzAyMjQrNXlGaXl6UnR6SFdhOVNPV2NQRTJLZTlsdklUSzdLMEEydTJXdTBwZEtLakV2MGM2aFVcbnNCakhGNWoza3VJR0lMSmJ5ZVNpN0RqbWJTc1FPTCtpSWZnRkM3NkhsTFVVR0lONmlKLy9kWGdWdmVRT3BRRzdcbkxhcGFDU1BKRDBrOGRJemlTNHdsTXVBbFhyU3kvOGpyRGxiRnJudStianc3UzZ0N0s5WGVNbHZNdm5wWndBbHNcbjhVNTRlaEViU0VrRWYyb0wyRUpkUTdPeVV3T1Z2Y2J1azNtQ3RXT2hXYzNoL1FTdURlbzBQWXJvTnYrYk1TdklcbmdtTDdCOVg0SXhMYTljUmkyQ0VkSW9aNUdLa1JjcGFOSjZUWCtZUTVGSzh3NmJmQzVGdEtvSTNxZ2RnaVMxcWlcbmZmTXNMNjVKQWdNQkFBRUNnZ0VBQmg5d1lKeCtROWd1QkVadUR4QlNzREtGZTRRZ1V1cmFsQXd0ZU02NXREOHlcblJTYW5GQWJSalRoWEJ6UXFXY3hvdXBlNXkwd0RYeC9NaUpSM1NIQ0xibkk1L2o3T1NibEE2ak44RUt4WVNPRzVcbmpaaXBYaVRBYjhQek52ejlnRlpGYjVUbmorNGRpRXIra3QzK0gvL0xlb002cmw5VWxpeWcrb3VKN3hFdjAwSXNcbmY2RWljSkplT0xDTFZNSzJJSWFJb2p5Tm5kMzVLbTRicXNhNGw3c3A0OVovbVZETnVMWkZpakE4VHdiZENMZUxcbkEvTEtPTzlJek5yMFZOa0QwZG96d3hXNkk1eEtVWnYxMWMwV0MvNzdNd0dwcTQwODVQbHZWdFErSDhBU3VFemZcbnR4aEhxQ2ZoQ2RIelBSdDM2SGZFakRXSWRDR1BiNlJXbDEvV2Nod3J0d0tCZ1FEbnVqOC9pWEE1U3Q1bWRRRmFcbmZXWTMrQWlZa2xyOGU5dmJUdjhVSW1sdW43OXoxOHA5TGxYNXFUWDdUdmZGSE5FSUZWekl1em1kK2NHbGRnd1Ncbmx3bzhJUnRrQ21EWDFUTDFRTDI2SVBYQmdUOUtuYktEc1d3UEV1SVpIZUkxY3lvTGNHTkduaFhLcVdrckVVa2dcbk1hRENXcW9SdExZWVF2UWdHQkIxZ3ZqRnR3S0JnUURlMTFNc2JMVCtqN3BNbUhwZHhXTGVwd3FXSnFjZVZEQ2Vcbm5jTy9aNitBU3VBMU5JUTkxN21IVlJmK0FsL04ra1RkeklRazZIMnNFeUJyYVVzclJIMm1MUm16S0Jla2xYS2xcbnB6NE1mM1dlS3RGMzR5NkYvN3VZRHF0Tld1SVcyRjRtTU1GU3Z3TVBBZUdtbXJhbDlCbys3MjBPTWt2UVlIcHVcbkF2NVNoRHNyL3dLQmdRQ2Z4UmhLdEhZOTZsTUJEWGRMYnQ2RmhHeFkxY0FLQ1ZRREY2cGp0WDVBR2NDbEhJbXVcbldiNUpqdE43WEcwVTZOTnU0VnZCd3VUcytRRDlGakVvdUI4RWFrYzZhTFZ3MnJ4eHdKdVBzNTMrTnlEdVQyQi9cbjBGcVM0aEFtQlNhc2Q2VHJraWZBenNwem11NjZGUWI0UFg5N3dZczAvZ1gzSUdLMXBpSGpBOVNHYlFLQmdRQ21cbk8ranU5ZlViQlNzTDRwODkvblpmOUNwZ2tsc09zKzFGRmhtbFduckFjSnJLOWU5RWx2M3U1OXFyQVNobzVxNmlcbjZ1TVZDVjVlbERJV0Rva2xzTVV1eHV3cUN0bUFUSUFtOVJqRGgvMjh6T0pQMWVpcHkza3MySnlQYXlISHV3YVlcbjVMd0N0ejFYMzZadWUzR1BZUWFITm1LYk9ZZjIzVkhYYVdKQk9pVk9Ed0tCZ0JjcFExNXlzaTZ2bTdONWxtdWxcbmtVWTZ3TmZkUzZRZkNhdm1Jbk5QSTB4bURzRk9xeHhTYWlFU29xL2dPL2RTQVBTV25QZzRYM05GL0ErVDNldC9cbm9FTHdtNWErODZVb0ppMFFDdVZqYVo3cXhmWktmWWVKQ3FVNFNEQTZDcXlFMms5MlZ5YTVLa1RKV1B6d0FZa3Rcbnh1RnlQejArQXBLM3J5MS82cHJkS1JuZFxuLS0tLS1FTkQgUFJJVkFURSBLRVktLS0tLVxuIiwKICAiY2xpZW50X2VtYWlsIjogInN0b3JhZ2Utc2F2ZXJAYXVkaXRpb24tdG9vbGtpdC5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIsCiAgImNsaWVudF9pZCI6ICIxMTIzNjQzMzA4OTI1OTAxOTEyNDkiLAogICJhdXRoX3VyaSI6ICJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20vby9vYXV0aDIvYXV0aCIsCiAgInRva2VuX3VyaSI6ICJodHRwczovL29hdXRoMi5nb29nbGVhcGlzLmNvbS90b2tlbiIsCiAgImF1dGhfcHJvdmlkZXJfeDUwOV9jZXJ0X3VybCI6ICJodHRwczovL3d3dy5nb29nbGVhcGlzLmNvbS9vYXV0aDIvdjEvY2VydHMiLAogICJjbGllbnRfeDUwOV9jZXJ0X3VybCI6ICJodHRwczovL3d3dy5nb29nbGVhcGlzLmNvbS9yb2JvdC92MS9tZXRhZGF0YS94NTA5L3N0b3JhZ2Utc2F2ZXIlNDBhdWRpdGlvbi10b29sa2l0LmlhbS5nc2VydmljZWFjY291bnQuY29tIiwKICAidW5pdmVyc2VfZG9tYWluIjogImdvb2dsZWFwaXMuY29tIgp9
+  notification-svc.json: ewogICJ0eXBlIjogInNlcnZpY2VfYWNjb3VudCIsCiAgInByb2plY3RfaWQiOiAiYXVkaXRpb24tMzEzMTUiLAogICJwcml2YXRlX2tleV9pZCI6ICJiYTVjZGIyZmY2NDBiNjE2ZDhhYTgyMmMwNjYxZDA4ZTc4NmIzYTkyIiwKICAicHJpdmF0ZV9rZXkiOiAiLS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tXG5NSUlFdmdJQkFEQU5CZ2txaGtpRzl3MEJBUUVGQUFTQ0JLZ3dnZ1NrQWdFQUFvSUJBUURZSGI1bzJKb2hJcHY4XG5sTW56RWl6TVFzUHY5OTRoMDAwNkJOYmtOU1ZLTnYvM1pzcDl4Vys2TlRpNS9CdUZ1UVJibUMyUUhWQnFtengzXG5QY0xSUDRPcXljVEcrVmFvMWVTRVRpYy9MSGhBN04xRDhZNHdvaWlhd3h6c2tKcVFxMllTQjBlNWhMT294UTNXXG5Wbmo5eG5ndnJMM1dMeEczMnNNTkMyY25JVU9GTDJ6OWo1dGtiNzVSMXZmK1B3eWZIU0hueDdQTE03SkhBcm9IXG5mU1BzajVaYVVTVG92K2JnQW1zVTNRT25tSER4bmN6bE1hbi9NbWhaVmtXZG9uYUF6aGtrMFlzZTBKTXNzbzBYXG5PaU5GZG15RUpZL3MvUXhYZGhHZUthekdYbUs3NFdXc3hMek1VUk9WblVHRlBpb0tDMUVmNGhWRzh2a05SNWhoXG5LNThJTUtzakFnTUJBQUVDZ2dFQUlTeVBxZkIxMkZoRHNZWDFhZ2FFTWVhZHhSdzdVTjNxb05sVlV6cUZPdHN1XG5kMytqM2FLTS8veGpkTWtxUUdDaU5wMHBnVkcrb2w2cDdYUGhqOVU4Rk45Y0FWOE0ybVhhNmlSRkNnRjloQm5YXG43VElMTFpQMnY2cnJxYlNZeFZSS0dzSmJWREwya1JXT2hqUkg1a3lzN2tTSjczTFNPWEt2TmpWbDVDL0srWXFCXG41aHFVckVBak95SHpOMng5ek81RnAyL29DWFpDUVFELzVFZkR1ZmlCOHVNd2pKdTIrYzlNTUlVKzhUNmVVa0ZnXG5xVDllaC9td0pBNDI5WVNldjBJOG5ybzFoNEZXWStTenhDakUrMlUwNGlkaTZ0dnZtamdpbjROc3ppQkNKWlVQXG5CL2RXRUlVaXYwV2U5clNTL0VBN3NOSzI3ZngyZHJZcFNCTmZabU1jZ1FLQmdRRHlQUUdKbmVqR2pmQzdKVk5DXG5EbFNIbEJhLzZjcXNGYm9aODJPNU5jT2RQNzBySHpUa2dDNlFrMjU3SFNCb3lzc1NIeEJKL2hOcmVXbmJhSjJSXG5lR2R3bHVqYVRudjY1OFlmYUJSMlo2ZUJGdXdwRWZValZmSzhlWU0xZGpJUmp2NnU3RGZjVEpJT2pNd0ROL1pLXG5TQzJtanpGbk1SUEc5YU9zOG5LckRmU1VFd0tCZ1FEa1pOU2orWURGbWdpdk9UaWNhemkxZGc1b21SVGFDT1J4XG5Idi9lR1ZLa2JqaEhKdnFVdFYvZFhEMytXWGZ3NitVVVNCMVBIOEVJaVQycTg2NWQ5aWZiaHJZeVdRL3d5MmtHXG45UFlDUTNDbjJ0Z3FiL3BQUDlDUnQzcmtaRXpoK1lDU3kyR3FwL2tvOUtkWjRPTVBSWm5nU0hYYUpIRjBsTzFQXG5WU2dleVRYT3NRS0JnSGFsQUxMSm4vQllKeGRTZ2NQeHh0OGMza09qRzd4TGEvbzM1cGtaUnpVbXVkMThER2o2XG5pMVFPa2VkRTdkSEZ1YzZuWGxBUFhLMmdLd1BtNm40TWpnVnNOS0p3SEhOWXdBWXo4UW5KWFJaeUJydGE2MGtpXG5XS0NObDRGQTRlY050Wm94WW03SkppUndPNkE3OGFxU1RhR3RzdEhMRE5lL0NpcTBHUXZFNnd6M0FvR0JBTlVZXG5TdG9QWWhsOEpWd3Z2R1VkR1ZVZHFFWHBobTRFVy9nN255bS9ZTDh3WTJ2bnIyYnViMXBleFN5NmwxRC9GOGE3XG5ualVFQUp3UlNLdG5IeXBtRUR3ZnpZRGVYaVFoOVlWYkt1bGp1UW0wQTNwYzdpUGcrNTNwbmt6WVZHK0cxbktnXG5OaWorL2xjN0phV1RVT2NmM25sSHdrWGRPTW80WmM1ZU9zZTJubkNSQW9HQkFPTVE3ZGNTMXBUNmpxaGNzNks2XG43OWxONUZuenVMdTdnb2M5SzNTemZ5SGhMUzZDTmtBWlJaT2JuME5mMHliQmw2Vmg1WXpLMmtjNWEySWMwY2xTXG5MSlpsejVNcTRIcUxTSWtQRmhoNUF3SXp0NWxBWnpMS3B6bWlUUTRqUC9DQVRRZVlFalZ1NTNHaW5mWlVBRUhEXG5IRE9zOHZ3VmRGdDJPM0dqWnRJNUxxV1hcbi0tLS0tRU5EIFBSSVZBVEUgS0VZLS0tLS1cbiIsCiAgImNsaWVudF9lbWFpbCI6ICJhdWRpdGlvbi0zMTMxNUBhcHBzcG90LmdzZXJ2aWNlYWNjb3VudC5jb20iLAogICJjbGllbnRfaWQiOiAiIiwKICAiYXV0aF91cmkiOiAiaHR0cHM6Ly9hY2NvdW50cy5nb29nbGUuY29tL28vb2F1dGgyL2F1dGgiLAogICJ0b2tlbl91cmkiOiAiaHR0cHM6Ly9vYXV0aDIuZ29vZ2xlYXBpcy5jb20vdG9rZW4iLAogICJhdXRoX3Byb3ZpZGVyX3g1MDlfY2VydF91cmwiOiAiaHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vb2F1dGgyL3YxL2NlcnRzIiwKICAiY2xpZW50X3g1MDlfY2VydF91cmwiOiAiaHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vcm9ib3QvdjEvbWV0YWRhdGEveDUwOS9hdWRpdGlvbi0zMTMxNSU0MGFwcHNwb3QuZ3NlcnZpY2VhY2NvdW50LmNvbSIsCiAgInVuaXZlcnNlX2RvbWFpbiI6ICJnb29nbGVhcGlzLmNvbSIKfQ==
+  jwt.pub: LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUExeTJveTRZK2liWDA4dS9CUlNWTAp1dnhja0VuNFJMa2cwMlNmZXVFcXAvTFBUUUh2T3pTMnd5TTVUM2VzWHlyNGJOc1dYSzd6T2dabjhWdUkrTXRwCmVPeGN5Y2tTa2d3NWNhQnpPTjJqNmt4aisrZXlDcnl4N2RTTm1kUGo2aCthak0wNDhaZ0F3RHYzZFora2h0S2sKaFJuSW1WUUpLbUZjdzJVV3V0M05ub0Q5OG5oYU5za3Q4bmJyZDZVbnYxTVJiUVpQSHVKU010Y3l4TFFsaC9UeApDTDNqQ3NYZkhJMUlYSmZnbFdWRzRpUHNpWWNWcmViaUxtWmNUMHYvcndlM1V2WVZLVnRSS2FtQVNuaXN0TSs5ClFSRVJxTmRBaHEyRzVMaDlCZ2VTdURLUDBJb2l5TmsyR0FSM0NmUHRpWCt2SnpIeFNzTzZyWDJhYnczSE5JUGMKSFFJREFRQUIKLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spleeter-server
+  namespace: dev
+  
+  labels:
+    app.kubernetes.io/instance: spleeter-server
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: spleeter-server
+    app.kubernetes.io/version: 1.16.0
+    helm.sh/chart: product-svc-0.1.0
+    k8slens-edit-resource-version: v1
+  annotations:
+    deployment.kubernetes.io/revision: '15'
+    meta.helm.sh/release-name: spleeter-server
+    meta.helm.sh/release-namespace: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: spleeter-server
+      app.kubernetes.io/name: spleeter-server
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: spleeter-server
+        app.kubernetes.io/name: spleeter-server
+    spec:
+      containers:
+        - name: app
+          image: >-
+            us-central1-docker.pkg.dev/audition-toolkit/spleeter/spleeter:v2.4.3
+          command:
+            - uvicorn
+            - app.main:app
+            - '--host=0.0.0.0'
+          ports:
+            - name: http
+              containerPort: 8000
+              protocol: TCP
+          # volume mount secret
+          volumeMounts:
+            - name: spleeter-secret
+              mountPath: /key
+              readOnly: true           
+
+          env:
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: spleeter-secret
+                  key: jwt.pub
+
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+          securityContext: {}
+      volumes:
+        - name: gcs-secret
+          secret:
+            secretName: spleeter-secret
+
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      serviceAccountName: default
+      serviceAccount: default
+      securityContext: {}
+      imagePullSecrets:
+        - name: gcr-secret
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: spleeter-server
+  namespace: dev
+  
+  labels:
+    app.kubernetes.io/instance: spleeter-server
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: spleeter-server
+    app.kubernetes.io/version: 1.16.0
+    helm.sh/chart: product-svc-0.1.0
+    k8slens-edit-resource-version: v1
+  
+spec:
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080
+  selector:
+    app.kubernetes.io/instance: spleeter-server
+    app.kubernetes.io/name: spleeter-server
+  type: ClusterIP
+  sessionAffinity: None

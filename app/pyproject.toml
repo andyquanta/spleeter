@@ -16,3 +16,4 @@ google-cloud-pubsub = "^2.7.0"
 google-cloud-storage = "^1.42.0"
 fastapi = "^0.111.0"
 firebase-admin = "^6.5.0"
+pyjwt = {extras = ["crypto"], version = "^2.9.0"}

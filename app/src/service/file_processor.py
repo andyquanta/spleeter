@@ -9,6 +9,7 @@ from google.cloud import storage
 from google.oauth2 import service_account
 
 from service.publish_notification import send_notification
+from service import token_helper
 
 SERVICE_ACCOUNT_FILE = os.getenv("STORAGE_KEY", "/key/storage.json")
 
@@ -50,7 +51,8 @@ async def apply_karaoke(folder_name):
     # Get the first file in folder
     file_name = os.listdir(folder_name)[0]
     # Apply karaoke effect to the audio file
-    spleeter_cmd = f"spleeter separate -o {folder_name}/output -p spleeter:2stems {folder_name}/{file_name}"
+    spleeter_cmd = f"spleeter separate -o {folder_name}/output -c mp3 -f {{instrument}}.{{codec}} \
+        -p spleeter:2stems {folder_name}/{file_name}"
     print(f"Running command: {spleeter_cmd}")
     process = await asyncio.create_subprocess_shell(
         f"{spleeter_cmd}"
@@ -84,7 +86,9 @@ async def upload_file(source_file_name, destination_blob_name):
     return signed_url
 
 
-async def process_file(source_file_name: str):
+async def process_file(source_file_name: str, jwt_token: str, device_token: str):
+
+    token_helper.validate_jwt(jwt_token)
     file_to_download = f"{BASE_PATH}/{source_file_name}"
     await download_file(file_to_download, f"{DEST_PATH}/{source_file_name}")
     downloaded_file = f"{DEST_PATH}/{source_file_name}"
@@ -96,7 +100,7 @@ async def process_file(source_file_name: str):
     await zip_with_native(f"{accompaniment_file}", f"{final_zip_file}")
     signed_url = await upload_file(f"{final_zip_file}", f"{BASE_PATH}/instruments/{folder_name}.zip")
 
-    await send_notification("device_token", "Your Karaoke File is ready for download", f"{signed_url}")
+    await send_notification(device_token, "Your Karaoke File is ready for download", f"{signed_url}")
     #await cleanup(source_file_name.split(".")[0])
 
     print(f"File {source_file_name} processed")
