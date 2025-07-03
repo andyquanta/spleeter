@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: karaoke-tunnel
+  namespace: dev
+  
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: karaoke-tunnel
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: karaoke-tunnel
+    spec:
+      
+      containers:
+        - name: cloudflared
+          image: cloudflare/cloudflared:latest
+          args:
+            - tunnel
+            - '--no-autoupdate'
+            - run
+            - '--url'
+            - http://spleeter-server
+            - '--token'
+            - >-
+              eyJhIjoiZTdjYmQwYmMwNmI0ZDU1ZjE2ZTFiOTM5M2IxYWJkNzkiLCJ0IjoiOTU5NzVlMzUtMjhiOC00YTQwLTliYzAtODYzOTg1NmFiN2YyIiwicyI6Ik9EUXhZMk0xTlRRdE16WmlOQzAwTnpVMkxUZzVNRFF0TnpJM04ySmxaamc0TlRBMyJ9
+          resources: {}
+          
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600

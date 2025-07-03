@@ -11,7 +11,7 @@ jwt_secret = os.getenv("JWT_SECRET")
 def parse_jwt_header(encoded_jwt):
     
     # Split the JWT into its components
-    header_b64, _, _ = encoded_jwt.split('.')
+    _, header_b64, _ = encoded_jwt.split('.')
     
     # Add necessary padding to the base64 encoded header
     header_b64 += '=' * (-len(header_b64) % 4)

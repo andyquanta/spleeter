@@ -15,11 +15,13 @@ COPY app/poetry.lock /app/poetry.lock
 WORKDIR /app
 
 RUN pip install poetry
-RUN poetry install
+RUN poetry install --no-root
+
+RUN apt install unzip zip
 
 COPY app /app
 
-RUN apt install unzip zip
+RUN mkdir -p /raw
 
 ENTRYPOINT ["poetry"]
 CMD ["run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080", "--app-dir", "src"]
