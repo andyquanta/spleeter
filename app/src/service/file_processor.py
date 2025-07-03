@@ -124,6 +124,6 @@ async def process_file(source_file_name: str, jwt_token: str, device_token: str)
     await send_notification(device_token, "Your Karaoke File is ready for download", f"{signed_url}")
     #await cleanup(source_file_name.split(".")[0])
 
-    await deduct_credits(header["installationId"], header["duration"], header["sha"])
+    await deduct_credits(header["installation_id"], header["duration"], header["file_sha"])
 
     print(f"File {source_file_name} processed")

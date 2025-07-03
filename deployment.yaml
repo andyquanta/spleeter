@@ -57,7 +57,9 @@ spec:
           volumeMounts:
             - name: spleeter-secret
               mountPath: /key
-              readOnly: true           
+              readOnly: true 
+            - name: model-volume
+              mountPath: /model
 
           env:
             - name: JWT_SECRET
@@ -75,6 +77,9 @@ spec:
         - name: gcs-secret
           secret:
             secretName: spleeter-secret
+        - name: model-volume
+          persistentVolumeClaim:
+            claimName: model-pvc
 
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
@@ -118,3 +123,16 @@ spec:
     app.kubernetes.io/name: spleeter-server
   type: ClusterIP
   sessionAffinity: None
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: model-pvc
+  namespace: dev
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
