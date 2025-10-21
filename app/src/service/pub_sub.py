@@ -19,7 +19,7 @@ PROJECT_ID = "audition-toolkit"
 # TOPIC_NAME = "projects/audition-toolkit/topics/main-file-topic"
 TOPIC_NAME = "main-file-topic"
 
-SUBSCRIPTION_NAME = "main-file-topic-sub"
+SUBSCRIPTION_NAME = "main-suscriber" #Typo in the subscription name kept as is to match existing setup
 
 credentials = service_account.Credentials.from_service_account_file(
     SERVICE_ACCOUNT_FILE, scopes=["https://www.googleapis.com/auth/cloud-platform"]
@@ -35,10 +35,13 @@ def callback(message):
     print(f"Received message: {message_content} type: {type(message_content)}")
     try:
         message_json = json.loads(message_content)
-        file_name = message_json["data"]["file_name"]
-        print(f"Processing file: {file_name}")
-        # run process_file hich is coroutine in a blocking way
-        asyncio.run(process_file(file_name))
+        file_id = message_json["data"]["file_id"]
+        jwt_token = message_json["data"]["jwt_token"]
+        device_token = message_json["data"]["device_token"]
+        print(f"Processing file_id: {file_id}, jwt_token: {jwt_token}, device_token: {device_token}")
+        
+        # run process_file which is coroutine in a blocking way
+        #asyncio.run(process_file(file_id, jwt_token, device_token))
 
         
     except Exception as e:

@@ -1,6 +1,6 @@
 # Developer Guide
 
-export version=v2.4.21
+export version=v2.4.26
 docker build -t spleeter:$version .
 docker tag spleeter:$version us-central1-docker.pkg.dev/audition-toolkit/audition-toolkit/spleeter:$version
 docker push us-central1-docker.pkg.dev/audition-toolkit/audition-toolkit/spleeter:$version

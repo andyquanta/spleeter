@@ -32,5 +32,5 @@ def validate_jwt(encoded_jwt, secret_key=jwt_secret, algorithms=['RS256']):
         return decoded_jwt
     except InvalidTokenError as e:
         # Handle invalid token errors
-        print(f"Invalid token: {e}")
+        logging.error(f"Invalid token: {e}")
         raise HTTPException(status_code=401, detail="Invalid token")
